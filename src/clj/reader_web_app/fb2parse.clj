@@ -32,7 +32,7 @@
 ;             next (rest tail)]
 ;         (if (symbol? f)
 ;           )
-        
+
 ;         ))))
 
 (defn get-meta-info
@@ -67,8 +67,10 @@
           (recur nodess))))))
 
 (defn parse-book
-  [book, uuid]  
-  (let [raw-xml-book (xml/parse (java.io.ByteArrayInputStream. (.getBytes ""))) ;(xml/parse book-path)
+  [book, uuid]
+  (if (nil? book)
+    nil)
+  (let [raw-xml-book (xml/parse (java.io.ByteArrayInputStream. (.getBytes book))) ;(xml/parse book-path)
         ; raw-xml-book (slurp book)
         raw-xml-book-wos (clojure.string/replace book #"(\t|\n|\r)" "")
         raw-book-content (xml/content raw-xml-book)
